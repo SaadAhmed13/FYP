@@ -1,0 +1,42 @@
+In computer science, bogosort (also permutation sort, stupid sort, slowsort, shotgun sort or monkey sort) is a particularly ineffective sorting algorithm based on the generate and test paradigm. The algorithm successively generates permutations of its input until it finds one that is sorted. It is not useful for sorting, but may be used for educational purposes, to contrast it with other more realistic algorithms.
+Two versions of the algorithm exist: a deterministic version that enumerates all permutations until it hits a sorted one, and a randomized version that randomly permutes its input. An analogy for the working of the latter version is to sort a deck of cards by throwing the deck into the air, picking the cards up at random, and repeating the process until the deck is sorted. Its name comes from the word bogus.
+
+
+== Description of the algorithm ==
+The following is a description of the randomized algorithm in pseudocode:
+
+while not isInOrder(deck):
+    shuffle(deck)
+
+
+== Running time and termination ==
+
+If all elements to be sorted are distinct, the expected number of comparisons performed in the average case by randomized bogosort is asymptotically equivalent to , and the expected number of swaps in the average case equals . The expected number of swaps grows faster than the expected number of comparisons, because if the elements are not in order, this will usually be discovered after only a few comparisons, no matter how many elements there are; but the work of shuffling the collection is proportional to its size. In the worst case, the number of comparisons and swaps are both unbounded, for the same reason that a tossed coin might turn up heads any number of times in a row.
+The best case occurs if the list as given is already sorted; in this case the expected number of comparisons is , and no swaps at all are carried out.
+For any collection of fixed size, the expected running time of the algorithm is finite for much the same reason that the infinite monkey theorem holds: there is some probability of getting the right permutation, so given an unbounded number of tries it will almost surely eventually be chosen.
+
+
+== Related algorithms ==
+Gorosort
+is a sorting algorithm introduced in the 2011 Google Code Jam. As long as the list is not in order, a subset of all elements is randomly permuted. If this subset is optimally chosen each time this is performed, the expected value of the total number of times this operation needs to be done is equal to the number of misplaced elements.
+Bogobogosort
+is an algorithm that was designed not to succeed before the heat death of the universe on any sizable list. It works by recursively calling itself with smaller and smaller copies of the beginning of the list to see if they are sorted. The best case is a single element, which is always sorted. For other cases, it compares the last element to the maximum element from the previous elements in the list. If the last element is greater or equal, it checks if the order of the copy matches the previous version, copies back if not, and returns. Otherwise, it reshuffles the current copy of the list and goes back to its recursive check.
+Bozosort
+is another sorting algorithm based on random numbers. If the list is not in order, it picks two items at random and swaps them, then checks to see if the list is sorted. The running time analysis of a bozosort is more difficult, but some estimates are found in H. Gruber's analysis of "perversely awful" randomized sorting algorithms. O(n!) is found to be the expected average case.
+Worstsort
+designed as the final answer to how inefficient a sorting algorithm can be. It is based on a multilevel sorting algorithm that works as follows. At level 0, multilevelsort is just any classical sorting algorithm such a bubble sort: multilevelsort(L,0) = bubblesort(L). Next, for any k > 0, multilevelsort(L,k) generates P = list of all permutations of L, runs multilevelsort(P,k-1), and copies the first element of the sorted P into L. Finally, worstsort accepts two arguments, the list L to be sorted, and a computable increasing function  (e.g. f(n) = A(n,n), where A is Ackermann's function), then it executes worstsort(L,f) = multilevelsort(L,f(length(L))), where length(L) = number of elements in L. The resulting algorithm has complexity , where  = factorial of n iterated m times. This algorithm can be made as inefficient as we wish by picking a fast enough growing function f.
+
+
+== See also ==
+Las Vegas algorithm
+Stooge sort
+
+
+== References ==
+
+
+== External links ==
+BogoSort on WikiWikiWeb
+Inefficient sort algorithms
+Bogosort: an implementation that runs on Unix-like systems, similar to the standard sort program.
+Bogosort and jmmcg::bogosort: Simple, yet perverse, C++ implementations of the bogosort algorithm.
